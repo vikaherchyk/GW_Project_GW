@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container-apartments {
+  width: 600px;
+  position: relative;
+  margin-right: 40%;
+  margin-left: 2%;
+  margin-top: 30px;
+}
+
+.mySlides {
+  display: none;
+  width: 600px;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+/*//////////////////////////*/
+* {
+	box-sizing: border-box;
+}
+
+.product-container{
+	display: flex;
+	flex-direction: column;
+	/* flex-wrap: wrap; */
+	padding: 1.25rem 5px 5px 5px;
+	/* min-width: 100vh; */
+	/* width: 100%; */
+	
+}
+
+.image-communication{
+	display: flex;
+}
+
+.product-image{
+	/* flex-grow: 1; */
+	flex-wrap: wrap;
+	width: 50%;
+	margin-right: 10%;
+	/* height: 50%; */
+	/* padding: 1.25rem; */
+	/* background-image: url("{product.image.url}"); */
+}
+
+.photo-image{
+	width: 100%;
+}
+
+
+.booked{
+	/* display: none; */
+    color: red;
+    font-weight: bold;
+}
+
+.container-communication {
+	background-color: #fff;
+	border-radius: 2%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	/* overflow: hidden; */
+	/* flex-grow: 1; */
+	width: 35%;
+	height: 730px;
+	/* max-width: 100%; */
+	padding: 20px;
+	/* margin: -670px 50px 50px 700px; */
+}
+
+.information-house{
+    padding: 20px;
+    width: 100%;
+}
+
+.product-description{
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: bold;
+}
+
+@media screen and (max-width: 650px) {
+	.image-communication {
+	  flex-direction: column;
+	  width: 100vh;
+	}
+	.product-image{
+		width: 100%;
+	}
+	.container-communication{
+		width: 100%;
+	}
+
+  }
+
+/* .header h2 {
+	margin: 0;
+} */
+
+.form {
+	padding: 2px 40px;	
+}
+
+.form-control {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-control input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+}
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 40px;
+	right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
+}
+
+.form button {
+	background-color: #8e44ad;
+	border: 2px solid #8e44ad;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .05rem 0;
+}
+
+.tag{
+    font-size: 16px;
+	width: 100%;
+
+}
+
+.button-communication{
+	margin: -7px 5px 15px 5px;
+}
+/*//////////////////////////*/
+.communication-button {
+	background-color: #343a40;;
+	text-decoration: none;
+	text-align: center; 
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+}
+	  
+.communication-button:hover {
+	background: #1d925b;
+	color: #fff;
+}

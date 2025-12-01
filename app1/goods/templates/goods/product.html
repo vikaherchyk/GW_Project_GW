@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="product-container">
+    <div class="image-communication">
+      <div class="product-image">
+        <section>
+          {% if product.booked_booking %}
+                <span class="booked">Заброньовано</span>
+          {% endif %}
+        </section>
+        <img class="photo-image" src="{{product.image.url}}" alt="Product Image">
+        <div class="information-house">
+          <h2>{{product.name}}</h2>
+          <p class="price">Адреса:{{product.quantity}}</br>
+          {{product.price}}</br>
+          Площа: {{product.discount}} M²</p>
+          <p class="product-id">id: {{product.display_id}}</p>
+          <p>Кількість кімнат: {{product.rooms}}</p>
+        </div>
+      </div>
+
+      <div class="container-communication">
+        <form method="post" class="form" id="bookingForm">
+          {% csrf_token %}
+          {% if request.GET.next %}
+            <input type="hidden" name="next" value={{request.GET.next}}>
+          {% endif %}
+           <div class="form-control">
+            <label for="id_username" class="form-label">Ім'я користувача*</label>
+            <input type="text" class="form-control" id="id_username"
+                value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                name="username"
+                placeholder="Введіть ваше ім'я користувача" required>
+                {% if form.username.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">{{form.username.errors}}</div>
+                {% endif %}
+          </div>
+          <div class="form-control">
+            <label for="id_email" class="form-label">Email*</label>
+            <input type="email" class="form-control" id="id_email"
+                  value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                  name="email"
+                  placeholder="Введіть ваш email" required>
+                  {% if form.email.errors %}
+                  <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                  {% endif %}
+          </div>
+          <div class="form-control">
+            <label for="id_phone_number" class="form-label">Номер телефону*</label>
+            <input type="tel" class="form-control" id="id_phone_number" 
+            value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
+            name="phone_number"
+            placeholder="Введіть номер телефону" required>
+            {% if form.phone_number.errors %}
+            <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
+            {% endif %}
+          </div>
+          <div class="form-control">
+            <label for="checkin" class="form-label">Дата заїзду:</label>
+            <input type="date" class="form-control" id="checkin" name="checkin" required>
+          </div>  
+          <div class="form-control">
+            <label for="checkout" class="form-label">Дата виїзду:</label>
+            <input type="date" class="form-control" id="checkout" name="checkout" required>
+          </div>
+
+          <button type="submit" name="book_button" class="btn btn-primary booked-button">Бронювати</button>
+
+
+
+          <p>{{product.contact_person}}</p>
+          <p>Email: {{product.email}}</p>
+          Тел. <a href="tel: {{product.phone_number}}">{{product.phone_number}}</a>
+        </form>
+        
+      </div>
+    </div>
+    <div class="information-house">
+      <p class="product-description">ОПИС</p>
+      <p class="text-description">{{product.description}}</p>
+    </div>   
+    <!-- === НОВИЙ БЛОК ДЛЯ ВІДГУКІВ === -->
+    <div class="review-section">
+  <p><strong>Залишити відгук:</strong></p>
+  <form method="post" action="{% url 'goods:add_review' product.slug %}" class="form" id="reviewForm">
+    {% csrf_token %}
+    <div class="form-control">
+      <label for="id_review_text" class="form-label">Ваш відгук:</label>
+      <textarea id="id_review_text" name="review_text" class="form-control" 
+                rows="4" placeholder="Напишіть свій відгук..." required></textarea>
+    </div>
+    <button type="submit" name="save_review" class="btn btn-success mt-2">Зберегти</button>
+  </form>
+</div>
+
+    <!-- === КІНЕЦЬ БЛОКУ ВІДГУКІВ === -->   
+      
+</div>
+{% endblock %}

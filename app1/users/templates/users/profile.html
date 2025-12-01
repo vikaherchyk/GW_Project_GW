@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Контент на сторінці -->
+<div class="bg-white p-3 mx-auto rounded custom-shadow">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-9 bg-white p-4 mb-5 mx-2 rounded custom-shadow">
+                <h2 class="text-center mb-4">Додати оголошення</h2>
+                <form action="{% url "user:profile" %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="id_name" class="form-label">Назва:</label>
+                            <input type="text" class="form-control" id="id_name" 
+                                value="{% if form.name.value %}{{ form.name.value }}{% endif %}"
+                                name="name"
+                                placeholder="Введіть назву" required>
+                                {% if form.name.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.name.errors}}</div>
+                                {% endif %}
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="id_slug" class="form-label">URL:</label>
+                            <input type="text" class="form-control" id="id_slug"
+                                value="{% if form.slug.value %}{{ form.slug.value }}{% endif %}"
+                                name="slug"
+                                placeholder="kvartiri-z-meblyami" required>
+                                {% if form.slug.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.slug.errors}}</div>
+                                {% endif %}
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Опис:</label>
+                            <textarea class="form-control" id="id_description" 
+                                value="{% if form.description.value %}{{ form.description.value }}{% endif %}"
+                                name="description" rows="3"></textarea>
+                                {% if form.description.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.description.errors}}</div>
+                                {% endif %}
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_image" class="form-label">Фото:</label>
+                            <input type="file" class="form-control" id="id_image"
+                                value="{% if form.image.value %}{{ form.image.value }}{% endif %}"
+                                name="image">
+                                {% if form.image.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.image.errors}}</div>
+                                {% endif %}
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_price" class="form-label">Ціна:</label>
+                            <input type="number" class="form-control" id="id_price"
+                                value="{% if form.price.value %}{{ form.price.value }}{% endif %}"
+                                name="price" step="100" required>
+                                {% if form.price.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.price.errors}}</div>
+                                {% endif %}
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_discount" class="form-label">Площа:</label>
+                            <input type="number" class="form-control" id="id_discount"
+                              value="{% if form.discount.value %}{{ form.discount.value }}{% endif %}"
+                              name="discount"
+                              placeholder="M²" step="10">
+                            {% if form.discount.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.discount.errors}}</div>
+                            {% endif %}
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_quantity" class="form-label">Адрес:</label>
+                            <input type="text" class="form-control" id="id_quantity" 
+                              value="{% if form.quantity.value %}{{ form.quantity.value }}{% endif %}"
+                              name="quantity"
+                              placeholder="Введіть адресу" required>
+                            {% if form.quantity.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.quantity.errors}}</div>
+                            {% endif %}
+                        </div>
+                        {% comment %} <div class="mb-3">
+                            <label for="id_booked_booking" class="form-label">Заброньовано:</label>
+                            <input type="checkbox" id="id_booked_booking" 
+                              value="{% if form.booked_booking.value %}{{ form.booked_booking.value }}{% endif %}"
+                              name="booked_booking">
+                            {% if form.booked_booking.errors %}
+                              <div class="alert alert-danger alert-dismissible fade show">{{form.booked_booking.errors}}</div>
+                            {% endif %}
+                        </div> {% endcomment %}
+
+                        <div class="mb-3">
+                            <label for="id_rooms" class="form-label">Кількість кімнат:</label>
+                            <input type="number" class="form-control" id="id_rooms"
+                                value="{% if form.rooms.value %}{{ form.rooms.value }}{% endif %}"
+                                name="rooms" step="1" required>
+                                {% if form.rooms.errors %}
+                                <div class="alert alert-danger alert-dismissible fade show">{{form.rooms.errors}}</div>
+                                {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_category" class="form-label">Категорія:</label>
+                            <select class="form-select" id="id_category" name="category" required>
+                                <option value="">--- Виберіть категорію ---</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.pk }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <h3 class="mt-5">Ваші контактні дані</h3>
+                        <div class="col-md-6 mb-3">
+                            <label for="id_contact_person" class="form-label">Контактна особа*</label>
+                            <input type="text" class="form-control" id="id_contact_person" 
+                            value="{% if form.contact_person.value %}{{ form.contact_person.value }}{% endif %}"
+                            name="contact_person"
+                            placeholder="Введіть ім'я та прізвище" required>
+                            {% if form.contact_person.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show">{{form.contact_person.errors}}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="id_email" class="form-label">Email-адреса*</label>
+                            <input type="email" class="form-control" id="id_email" 
+                            value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                            name="email"
+                            placeholder="Введіть email" required>
+                            {% if form.email.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="id_phone_number" class="form-label">Номер телефону*</label>
+                            <input type="tel" class="form-control" id="id_phone_number" 
+                            value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
+                            name="phone_number"
+                            placeholder="Введіть номер телефону" required>
+                            {% if form.phone_number.errors %}
+                            <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
+                            {% endif %}
+                        </div>
+
+
+
+                    </div>
+                    <button type="submit"
+                        class="btn btn-dark btn-block">Додати оголошення</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

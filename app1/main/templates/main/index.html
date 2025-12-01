@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-top">
+    <section class="section-container" style="background-image: url('{% static "deps/img/photo_1.jpg" %}')">
+        <h2>Квартири</h2>
+        {% comment %} <p>Содержимое секции 1...</p> {% endcomment %}
+        <button class="section-button">Квартири</button>
+    </section>
+
+    <section class="section-container" style="background-image: url('{% static "deps/img/photo_2.jpg" %}')">
+        <h2>Будинки</h2>
+        {% comment %} <p>Содержимое секции 2...</p> {% endcomment %}
+        <button class="section-button">Будинки</button>
+    </section>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer><center>© 2024 Герчук Вікторія<br> 
+        Всі права захищені.<br>
+        м.Львів<br>
+        Email: vikaherchyk@gmail.com</center>
+    </footer> 
+{% endblock %}

@@ -1,0 +1,105 @@
+.flex-container {
+    display: flex;
+    /* flex-direction: column-reverse; */
+    flex-wrap: wrap;
+    /* flex: 1; */
+    /* min-height: 100vh; */
+    /* padding-top: 4.375rem; */
+    padding-top: 1.25rem;
+    align-items: stretch;
+}
+
+.houses {
+    width: calc(100% - 15px);
+    /* flex-wrap: wrap; */
+    height: 300px;
+    border: 2px solid #ccc;
+    margin: 5px;
+}
+
+.house {
+    /* width: 92%; */
+    height: 200px;
+    /* margin: 12px 1%; */
+    /* border: 2px solid #ccc; */
+    text-decoration: none;
+}
+
+.house img {
+    width: 25%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.house-info {
+    padding: 15px;
+    background-color: #fff;
+    margin: -300px 20px 100px 25%;
+}
+
+.price{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+.description{
+    font-size: 1.1em;
+    padding: 15px;
+    margin: -140px 20px 200px 25%;
+}
+
+.address{
+    font-size: 1.1em;
+    padding: 10px;
+    margin: -220px 20px 100px 25%;
+}
+
+.catalog_booking{
+    font-size: 1.1em;
+    padding: 10px;
+    margin: -320px 20px 100px 75%;
+}
+
+@media screen and (max-width: 650px) {
+	.catalog_booking {
+	  margin: -320px 20px 100px 60%;
+	}
+  }
+/*p {
+    margin: 5px 0;
+}*/
+
+/*a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}*/
+
+/* .information-house{
+    padding: 20px;
+    width: 50%;
+}
+
+.description{
+    padding-left: 50px;
+    font-size: 1.1em;
+}
+
+.text-description{
+    text-align: justify;
+}
+
+.maps {
+    width: 350px;
+    height: 250px;
+    border: 0;
+    allowfullscreen;
+    loading: lazy;
+    referrerpolicy: no-referrer-when-downgrade;
+    margin: -200px 20px 10px 730px;
+  } */

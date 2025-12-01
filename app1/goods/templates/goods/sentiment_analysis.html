@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Рекомендації нерухомості</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+      }
+      h1 {
+        color: #333;
+      }
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        width: 500px;
+        max-width: 90%;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+      button {
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #2563eb;
+      }
+      .property {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        padding: 15px;
+        width: 600px;
+        max-width: 95%;
+      }
+      .property img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      .message {
+        color: #555;
+        font-style: italic;
+        margin-top: 15px;
+      }
+      .analyze-btn {
+        background-color: #10b981;
+        margin-top: 10px;
+      }
+      .analyze-btn:hover {
+        background-color: #059669;
+      }
+      .results {
+        background: #fff;
+        padding: 12px;
+        border-radius: 8px;
+        max-width: 800px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Нерухомість, яка може вам сподобатися 🏡</h1>
+
+    <form method="POST">
+      {% csrf_token %}
+      <label for="preferences">Опишіть, що ви шукаєте:</label>
+      <textarea
+        name="preferences"
+        id="preferences"
+        rows="3"
+        placeholder="Наприклад: Хочу квартиру з двома кімнатами в центрі до 15000 грн"
+      >
+{{ user_query }}</textarea
+      >
+      <button type="submit">Аналізувати</button>
+    </form>
+
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %} {% if recommendations %} {% for product in recommendations %}
+    <div class="property">
+      <h3>{{ product.name }}</h3>
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+      {% endif %}
+      <p><b>Адреса:</b> {{ product.quantity }}</p>
+      <p><b>Кімнати:</b> {{ product.rooms }}</p>
+      <p><b>Площа:</b> {{ product.discount }} м²</p>
+      <p><b>Ціна:</b> {{ product.price }} грн</p>
+      <p><b>Опис:</b> {{ product.description }}</p>
+
+      <!-- Кнопка для аналізу відгуків конкретної квартири -->
+      <a href="{% url 'goods:analyze_reviews' product.slug %}">
+        <button class="analyze-btn">Аналіз відгуків 🧠</button>
+      </a>
+    </div>
+    {% endfor %} {% endif %} {% if detailed_predictions %}
+    <!--<h3 style="margin-top: 15px">
+      Результати прогнозування тональності
+    </h3>-->
+
+    <p style="font-weight: bold; color: #444; margin-bottom: 10px">
+      Всього відгуків: {{ detailed_predictions|length }}
+    </p>
+
+    {% endif %} {% if chart_base64 %}
+    <img
+      src="data:image/png;base64,{{ chart_base64 }}"
+      alt="Графік тональності"
+      style="max-width: 600px; width: 100%; margin-top: 15px"
+    />
+    {% endif %}
+    <div class="results">
+      {% for txt, label, prob in detailed_predictions %}
+      <p style="margin: 8px 0">
+        <b>Відгук:</b> {{ txt|truncatechars:120 }} <br />
+        <b>→ Прогноз:</b> {{ label }} ({{ prob|floatformat:2 }})
+      </p>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 6px 0" />
+      {% endfor %}
+    </div>
+  </body>
+</html>
